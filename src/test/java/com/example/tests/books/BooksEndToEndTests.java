@@ -9,10 +9,8 @@ import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +18,7 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.apache.http.protocol.HTTP.CONTENT_TYPE;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {BookTestConfig.class})
 public class BooksEndToEndTests {
 
