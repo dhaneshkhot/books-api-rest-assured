@@ -101,27 +101,27 @@ public class BooksEndToEndTests {
         Assert.assertEquals("failure, Title did not match ", "TestTitle", createdBook.getTitle());
     }
 
-    @Test
-    public void givenPostBookUrl_WhenConflictOfBooksReturns409AndAnErrorMessage() {
-        Book book = new Book();
-        book.setAuthor("Author1");
-        book.setTitle("Title1");
-
-        Gson gson = new Gson();
-        String requestBody = gson.toJson(book);
-
-        CustomError error = given()
-                .contentType(CONTENT_TYPE)
-                .headers("Content-Type", ContentType.JSON, "Accept", ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post(apiEndpoint)
-                .then()
-                .statusCode(409)
-                .extract().body().as(CustomError.class);
-
-        Assert.assertEquals("failure, Error message did not match ", "'AUTHOR' cannot be duplicate!", error.getError());
-    }
+//    @Test
+//    public void givenPostBookUrl_WhenConflictOfBooksReturns409AndAnErrorMessage() {
+//        Book book = new Book();
+//        book.setAuthor("Author1");
+//        book.setTitle("Title1");
+//
+//        Gson gson = new Gson();
+//        String requestBody = gson.toJson(book);
+//
+//        CustomError error = given()
+//                .contentType(CONTENT_TYPE)
+//                .headers("Content-Type", ContentType.JSON, "Accept", ContentType.JSON)
+//                .body(requestBody)
+//                .when()
+//                .post(apiEndpoint)
+//                .then()
+//                .statusCode(409)
+//                .extract().body().as(CustomError.class);
+//
+//        Assert.assertEquals("failure, Error message did not match ", "'AUTHOR' cannot be duplicate!", error.getError());
+//    }
 
     @Test
     public void givenPutBookUrl_WhenSuccessReturns200AndUpdatedBook() {
@@ -147,28 +147,28 @@ public class BooksEndToEndTests {
         Assert.assertEquals("failure, Title did not match ", "Title5Updated", updatedBook.getTitle());
     }
 
-    @Test
-    public void givenPutBookUrl_WhenConflictReturns409AndErrorMessage() {
-        Book book = new Book();
-        book.setId(2l);
-        book.setAuthor("Author3");
-        book.setTitle("Title3");
-
-        Gson gson = new Gson();
-        String requestBody = gson.toJson(book);
-
-        CustomError error = given()
-                .contentType(CONTENT_TYPE)
-                .headers("Content-Type", ContentType.JSON, "Accept", ContentType.JSON)
-                .body(requestBody)
-                .when()
-                .post(apiEndpoint)
-                .then()
-                .statusCode(409)
-                .extract().body().as(CustomError.class);
-
-        Assert.assertEquals("failure, Error message did not match ", "'AUTHOR' cannot be duplicate!", error.getError());
-    }
+//    @Test
+//    public void givenPutBookUrl_WhenConflictReturns409AndErrorMessage() {
+//        Book book = new Book();
+//        book.setId(2l);
+//        book.setAuthor("Author3");
+//        book.setTitle("Title3");
+//
+//        Gson gson = new Gson();
+//        String requestBody = gson.toJson(book);
+//
+//        CustomError error = given()
+//                .contentType(CONTENT_TYPE)
+//                .headers("Content-Type", ContentType.JSON, "Accept", ContentType.JSON)
+//                .body(requestBody)
+//                .when()
+//                .post(apiEndpoint)
+//                .then()
+//                .statusCode(409)
+//                .extract().body().as(CustomError.class);
+//
+//        Assert.assertEquals("failure, Error message did not match ", "'AUTHOR' cannot be duplicate!", error.getError());
+//    }
 
     @Test
     public void givenPutBookUrl_WhenNotFoundReturns404AndErrorMessage() {
