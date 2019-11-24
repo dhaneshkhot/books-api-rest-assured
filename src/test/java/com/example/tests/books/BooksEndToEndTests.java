@@ -28,11 +28,10 @@ public class BooksEndToEndTests {
 
     @BeforeClass
     public static void setUp(){
+        System.out.println("Test API Endpoint: \n" + apiEndpoint);
         MySqlDaoSql mySqlDaoSql = new MySqlDaoSql(BookTestConfig.jdbcTemplate());
         mySqlDaoSql.truncateTable();
         mySqlDaoSql.batchInsert(getBooks());
-
-        LOGGER.info("Test API Endpoint: \n" + apiEndpoint);
     }
 
     @AfterClass
