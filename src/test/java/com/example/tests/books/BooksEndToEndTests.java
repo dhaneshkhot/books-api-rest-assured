@@ -9,6 +9,8 @@ import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import org.junit.*;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,14 +23,16 @@ import static org.apache.http.protocol.HTTP.CONTENT_TYPE;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = {BookTestConfig.class})
 public class BooksEndToEndTests {
-
-    String apiEndpoint = Properties.getApiEndpoint();
+    private static final Logger LOGGER = LoggerFactory.getLogger(BooksEndToEndTests.class);
+    private static String apiEndpoint = Properties.getApiEndpoint();
 
     @BeforeClass
     public static void setUp(){
         MySqlDaoSql mySqlDaoSql = new MySqlDaoSql(BookTestConfig.jdbcTemplate());
         mySqlDaoSql.truncateTable();
         mySqlDaoSql.batchInsert(getBooks());
+
+        LOGGER.info("Test API Endpoint: \n" + apiEndpoint);
     }
 
     @AfterClass
